@@ -1,0 +1,28 @@
+{
+  "name": "job-apply-ai",
+  "version": "1.0.0",
+  "description": "Complete AI-powered job application automation platform with auto-fill, auto-apply, and intelligent matching - similar to FastApply.co",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test -w backend",
+    "dev": "concurrently -n backend,frontend \"npm run dev -w backend\" \"npm run dev -w frontend\"",
+    "build": "npm run build -w backend && npm run build -w frontend",
+    "db:generate": "npm run prisma:generate -w backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://localhost:26831/Adnaneorh/job-apply-ai.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "devDependencies": {
+    "concurrently": "^10.0.4"
+  }
+}

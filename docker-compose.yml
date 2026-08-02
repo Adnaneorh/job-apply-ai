@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: job_apply_ai
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    depends_on:
+      - postgres
+    environment:
+      PORT: 4000
+      DATABASE_URL: ******postgres:5432/job_apply_ai?schema=public
+      JWT_SECRET: dev-secret
+      OPENAI_API_KEY: ''
+      UPLOAD_DIR: uploads
+    ports:
+      - '4000:4000'
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    environment:
+      VITE_API_URL: http://backend:4000/api
+    ports:
+      - '5173:5173'
+
+volumes:
+  pgdata:
