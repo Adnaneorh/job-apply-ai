@@ -10,6 +10,7 @@ import { profileRouter } from './routes/profile';
 import { aiRouter } from './routes/ai';
 import { autoApplyRouter } from './routes/autoApply';
 import { errorHandler } from './middleware/errorHandler';
+import { apiRateLimiter } from './middleware/rateLimit';
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(helmet());
 app.use(cors({ origin: env.FRONTEND_URL }));
 app.use(express.json({ limit: '2mb' }));
 app.use(morgan('dev'));
+app.use('/api', apiRateLimiter);
 
 app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 app.use('/api/auth', authRouter);
