@@ -1,0 +1,12 @@
+:root {
+  --primary: #2563eb;
+}
+
+:root[data-theme='blue'] { --primary: #2563eb; }
+:root[data-theme='purple'] { --primary: #7c3aed; }
+:root[data-theme='green'] { --primary: #15803d; }
+:root[data-theme='red'] { --primary: #dc2626; }
+
+.bg-primary { background-color: var(--primary); }
+.text-primary { color: var(--primary); }
+.border-primary { border-color: var(--primary); }
